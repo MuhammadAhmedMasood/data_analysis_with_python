@@ -147,4 +147,81 @@ SELECT * FROM student
 WHERE marks>60 
 LIMIT 3; -- first 3 students
 -- Order Clause
+SELECT * FROM student
+ORDER BY city ASC; -- ascending order
+SELECT * FROM student
+ORDER BY marks DESC
+LIMIT 3; -- getting top 3 students
+-- Aggregate Functions - they perform some functions. returns only one value
+-- COUNT(), MAX(), MIN(), MINI(), SUM(), AVG()
+
+SELECT MAX(marks) FROM student;
+SELECT MIN(marks) FROM student;
+SELECT AVG(marks) FROM student;
+SELECT COUNT(name) FROM student; -- rollno also works
+
+-- Group By clause
+-- collects data from multiple records and group result by one or more column
+-- usally works with aggt function
+
+SELECT city, name, COUNT(rollno) FROM student
+GROUP BY city, name;
+
+-- Practise qn2:
+SELECT city, AVG(marks)
+FROM student
+GROUP BY city
+ORDER BY avg(marks); -- by defauly order by gives in asc
+
+-- Practise qn3:
+CREATE TABLE payment(
+	customer_id INT PRIMARY KEY,
+    customer VARCHAR(50),
+    mode_ VARCHAR(20),
+    city VARCHAR(20)
+);
+INSERT INTO payment
+(customer_id, customer, mode_, city)
+VALUES
+(101, "Olivia Barrett", "Netbanking", "Portland"),
+(102, "Ali Khan", "Credit Card", "Miami"),
+(103, "John Baker", "Credit Card", "Seattle"),
+(104, "Daud Raja", "Netbanking", "Denver"),
+(105, "Ellie Bravo", "Credit Card", "New Orleans"),
+(106, "Jake Bon", "Debit Card", "Minneapolis"),
+(107, "Greg Chel", "Debit Card", "Phoenix"),
+(108, "Boris Batcock", "Netbanking", "Boston"),
+(109, "Ahmed Gill", "Netbanking", "Nashville"),
+(110, "Den Firoja", "Credit Card", "Boston");
+
+SELECT * FROM payment;
+
+-- find total payment according to each payment method
+
+SELECT mode_, COUNT(customer) -- also works with mode_
+FROM payment
+GROUP BY mode_;
+
+-- HAVING Clause:
+-- similar to where i.e applies condition on rows
+-- used when we want to apply any condition after grouping
+
+SELECT count(name), city
+FROM student
+GROUP BY city
+HAVING max(marks)>90;
+
+-- general order of clauses: SELECT cols FROM table_name WHERE condition
+-- GROUP BY cols HAVING condition ORDER BY cols ASC;
+-- WHERE comes before the GROUP BY and acts on rows
+-- HAVING comes after GROUP BY and applies to groups of columns
+
+
+
+
+
+
+
+
+
 
