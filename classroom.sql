@@ -337,11 +337,30 @@ ALTER TABLE student DROP COLUMN grade;
 
 -- SQL Sub Queries:
 
+-- SELECT cols FROM table_name WHERE co_name operator (subquery);
+SELECT full_name, marks FROM student
+WHERE marks>(SELECT AVG(marks) FROM student);
 
+-- another example:
+-- even roll nos and find student names
+SELECT full_name, rollno FROM student
+WHERE rollno = (SELECT rollno FROM student WHERE rollno%2=0);
+-- can also use IN: WHERE roll no IN ();
 
+-- so far we have written subquery in WHERE
+-- another example: here subquery will be written in FROM
 
+SELECT * FROM student WHERE city = "Islamabad";
+SELECT max(marks) FROM (SELECT * FROM student WHERE city = "Islamabad") as temp;
 
+-- example of subquery after SELECT
 
+SELECT (SELECT max(marks) FROM student), full_name FROM student;
+
+-- MySQL Views
+-- views are virtual tables taken from the real table, only a portion of it.
+CREATE VIEW view1 AS SELECT rollno, full_name FROM student;
+SELECT * FROM view1;
  
 
 
