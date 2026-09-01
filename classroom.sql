@@ -216,6 +216,103 @@ HAVING max(marks)>90;
 -- WHERE comes before the GROUP BY and acts on rows
 -- HAVING comes after GROUP BY and applies to groups of columns
 
+SELECT city FROM student WHERE grade = 'A'
+GROUP BY city HAVING MAX(marks)>90;
+
+-- TABLE related queries
+-- 1. update
+UPDATE student SET grade = "O" WHERE grade = "A"; -- initially gives safe mode error
+SET SQL_SAFE_UPDATES = 0; -- safe mode off 
+
+SELECT * FROM student;
+
+-- 2. DELETE
+DELETE FROM student where marks < 35;
+SELECT * FROM student;
+
+-- revisiting FK
+
+CREATE TABLE dept(
+	id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+INSERT into dept
+VALUES
+(101, "english"),
+(102, "maths");
+SELECT*FROM dept;
+
+UPDATE dept SET id = 103 WHERE id = 102;
+
+CREATE TABLE teacher(
+	id INT PRIMARY KEY,
+    name VARCHAR(50),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES dept(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+DROP TABLE teacher;
+
+INSERT INTO teacher
+VALUES
+(101, "Adam", 101),
+(102, "Eve", 102);
+
+SELECT*FROM teacher;
+
+-- parent table (from where FOREIGN KEY comes)
+-- child table (that uses that FOREIGN KEY)
+
+-- CASCADING FK i.e if one place change happens, other places will also have that change
+
+-- ALTER in TABLE:
+-- ALTER changes the schema i.e in the cols
+
+-- Example:
+ALTER TABLE student
+ADD COLUMN age INT;
+SELECT*FROM student;
+ALTER TABLE student
+DROP COLUMN age;
+SELECT*FROM student;
+
+-- RENAME TO new_table_name using ALTER
+-- CHANGE COLUMN
+-- MODIFY COLUMN
+
+ALTER TABLE student
+ADD COLUMN age INT NOT NULL DEFAULT 19;
+ALTER TABLE student
+MODIFY COLUMN age VARCHAR(50);
+-- ALTER TABLE student CHANGE age stu_age INT;
+-- ALTER TABLE student DROP COLUMN stu_age;
+-- ALTER TABLE student RENAME to stu;
+
+-- TRUNCATE - deletes all the data from table (table remains there)
+-- TRUNCATE TABLE table_name
+-- DROP delets the table(not just the data)
+
+-- practise qn 3:
+-- change the name of col name to full_name
+-- delete all the students who scored marks less than 80
+-- delete col for grade
+SELECT * FROM student;
+ALTER TABLE student CHANGE name full_name VARCHAR(59);
+DELETE FROM student WHERE marks<80;
+ALTER TABLE student DROP COLUMN grade;
+
+
+
+
+
+
+
+
+
+
 
 
 
