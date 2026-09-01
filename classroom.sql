@@ -304,10 +304,45 @@ ALTER TABLE student CHANGE name full_name VARCHAR(59);
 DELETE FROM student WHERE marks<80;
 ALTER TABLE student DROP COLUMN grade;
 
+-- joins in sql:
+-- combines rows from two or more tables, based on a related column between them
+-- inner join -> some intersection (common data)
+-- outer join - 3 types:
+-- left join -> In table A and overlap between A and B. But not B only
+-- right join 0> In table B and overlap between A and b
+-- full join -> complete
+
+-- inner join: SELECT col FROM tableA INNER JOIN tableB ON tableA.col_name = tableB.col_name;
+-- alias - alternate name e.g FROM student as s
+
+-- left join: SELECT cols FROM tableA LEFT JOIN tableB on tableA.col_name = tableB.col_name;
+-- right join: SELECT cols FROM tableA RIGHt JOIN tableB on tableA.col_name = tableB.col_name;
+-- full join: SELECT cols FROM tableA FULL JOIN tableB on tableA.col_name = tableB.col_name;
+
+-- MySQL doesnt have FULL JOIN, so use UNION of LEFT JOIN and RIGHT JOIN
+
+-- left exclsuive join (only A which is not in B) ->
+-- FROM * SELECT student as s LEFT JOIN course as c ON a.id = c.id WHERE c.id IS NULL;
+
+-- right exlsuive join (only b which is not in A)
+-- FROM * SELECT student as s RIGHT JOIN course as c ON a.id = c.id WHERE a.id IS NULL;
+
+-- SELF JOIN: a regular join like an inner join but the table is joined is itself
+-- SELECT cols FROM table as a JOIN table as b ON a.id = b.manager_id;
+
+-- UNION
+-- SELECT cols FROM tableA UNION SELECT cols FROM tableB
+
+-- UNION ALL - gives duplicates
+
+-- SQL Sub Queries:
 
 
 
 
+
+
+ 
 
 
 
