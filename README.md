@@ -46,3 +46,24 @@ Hands-on notes on Matplotlib, the core plotting library in Python, including its
 8. **Advanced Customization** — annotations/text (`annotate`, `text`), reference lines (`axvline`/`axhline`), custom legends, and built-in styles (`plt.style.available`)
 9. **Pie Charts** — `pie`, with `explode` and `autopct` for percentage labels
 10. **Saving Plots** — `fig.savefig` to PNG (raster) and PDF (vector), with `dpi` and `bbox_inches` options
+
+## Ahmed_scikit_learn_tutorial.ipynb
+
+Hands-on notes on scikit-learn, the core machine learning library in Python. Practiced on the breast cancer, Iris, and California Housing datasets, plus synthetic data. Covers:
+
+1. **Setup & Imports** — installing `scikit-learn` and friends, core imports
+2. **KNN Classifier Walkthrough** — the full supervised-learning pipeline on the breast cancer dataset: load data → train/test split → scale features (`StandardScaler`) → fit `KNeighborsClassifier` → evaluate → predict
+3. **Different Ways to Load a Dataset** — `Bunch` object vs. `return_X_y=True` arrays vs. `as_frame=True` DataFrame
+4. **Fetching Datasets from the Internet** — `load_*` (bundled) vs. `fetch_*` (downloaded), `fetch_california_housing`
+5. **Exploratory Data Analysis (EDA)** — `hist`, `describe`, `info`
+6. **Synthetic Datasets for Practice** — `make_blobs`, `make_moons`
+7. **Revisiting Train/Test Splits (Iris dataset)** — checking class balance, and `StratifiedShuffleSplit` for preserving class proportions
+8. **Preprocessing** — `StandardScaler` and `MinMaxScaler` (with manual from-scratch versions), ordinal encoding (`OrdinalEncoder`) and one-hot encoding (`OneHotEncoder`) for categorical features
+9. **Classification** — swapping in different classifiers (KNN, Logistic Regression, Decision Tree, SVC, Random Forest, Naive Bayes) and predicting a single new instance
+10. **Regression** — the same workflow for a continuous target, with Linear/Lasso/Ridge/ElasticNet, KNN, SVR, Random Forest, Gradient Boosting, and Decision Tree regressors
+11. **Clustering** — `KMeans` on blobs and on non-linear `make_moons` data, and `DBSCAN` for density-based clusters
+12. **Dimensionality Reduction (PCA)** — reducing MNIST's pixel features before classifying with Logistic Regression
+13. **Metrics** — accuracy, precision, recall, F1 for classification; MSE, MAE, RMSE, R² for regression
+14. **Cross-Validation** — `cross_val_score` for a more reliable performance estimate across multiple splits
+15. **Hyperparameter Tuning** — searching a parameter grid with `GridSearchCV`
+16. **Pipelines** — chaining preprocessing and model steps together with `Pipeline`
